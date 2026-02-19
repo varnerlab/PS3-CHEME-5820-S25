@@ -22,6 +22,7 @@ using PrettyTables
 using Random
 using KernelFunctions
 using DataFrames
+using Test
 
 # set the random seed for reproducibility
 Random.seed!(1234);
