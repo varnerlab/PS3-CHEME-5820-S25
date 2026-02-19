@@ -3,30 +3,28 @@ const _ROOT = pwd();
 const _PATH_TO_SRC = joinpath(_ROOT, "src");
 const _PATH_TO_DATA = joinpath(_ROOT, "data");
 
-# flag to check if the include file was called -
-const _DID_INCLUDE_FILE_GET_CALLED = true;
-
 # check do we have a Manifest.toml file?
 using Pkg;
 if (isfile(joinpath(_ROOT, "Manifest.toml")) == false) # have manifest file, we are good. Otherwise, we need to instantiate the environment
+    Pkg.add(path="https://github.com/varnerlab/VLDataScienceMachineLearningPackage.jl.git")
     Pkg.activate("."); Pkg.resolve(); Pkg.instantiate(); Pkg.update();
 end
 
-# load external packages
-using Statistics
-using LinearAlgebra
+# load external packages -
+using VLDataScienceMachineLearningPackage
+using StatsPlots
 using Plots
 using Colors
+using Statistics
+using LinearAlgebra
+using Distances
 using PrettyTables
-using DataFrames
-using CSV
-using FileIO
-using LIBSVM
-using Distributions
-using Images
 using Random
-using Test
+using KernelFunctions
+using DataFrames
 
-# load my codes -
+# set the random seed for reproducibility
+Random.seed!(1234);
+
+# include the source files -
 include(joinpath(_PATH_TO_SRC, "Files.jl"));
-include(joinpath(_PATH_TO_SRC, "Compute.jl"));

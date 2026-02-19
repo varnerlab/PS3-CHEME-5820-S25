@@ -1,8 +1,3 @@
-"""
-    parser(filepath::String; numberoffields::Int = 8)
-
-Parses a file in the format of the LIBSVM dataset, returning a matrix of records and a vector of labels.
-"""
 function parser(filepath::String; numberoffields::Int = 8)
     
     # initialize -
@@ -36,6 +31,7 @@ function parser(filepath::String; numberoffields::Int = 8)
 
     # convert records to an array -
     recordarray = hcat(values(records)...) |> transpose |> Matrix;
+
 
     return [recordarray labels];
 end
